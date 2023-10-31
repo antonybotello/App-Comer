@@ -9,3 +9,10 @@ def principal(request):
         "sliders": sliders
     }
     return render(request, "index.html", context)
+
+def principal_admin(request):
+    titulo="Bienvenido"
+    context={
+        "titulo": titulo,
+    }
+    return render(request, "index-admin.html", context)
