@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'clasificacion',
     'comunidad',
     'operaciones',
+    'configuracion',
     'django_bootstrap5',# pip install django-bootstrap5
     'crispy_forms', # pip install django-crispy-forms
 ]

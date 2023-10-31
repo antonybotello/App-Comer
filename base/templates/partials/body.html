@@ -1,0 +1,21 @@
+{% load django_bootstrap5 %}
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppComer - {{titulo}}</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+</head>
+<body>
+    {% include 'partials/header.html' %}
+    
+    {% block contenido %}
+        
+    {% endblock contenido %}
+    {% include 'partials/footer.html' %}
+        
+</body>
+</html>
