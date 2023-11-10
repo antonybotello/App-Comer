@@ -1,3 +1,29 @@
 {% load static %}
 <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
 <script src="{% static 'js/adminlte/adminlte.js' %}"></script>
+
+<!- para las tablas ->
+<script src="{% static "DataTables/DateTime/jquery-3.7.0.js" %}"></script>
+
+<script src="{% static "DataTables/datatables.min.js" %}"></script>
+
+<script src="{% static "DataTables/DateTime/dataTables.dateTime.min.js" %}"></script>
+<script src="{% static "DataTables/DateTime/jquery.dataTables.min.js" %}"></script>
+<script src="{% static "DataTables/DateTime/moment.min.js" %}"></script>
+<script src="{% static "DataTables/datatables-config.js" %}"></script>
+
+
+
+<!- para las alertas ->
+<script src="{% static "Toastr/js/toastr.min.js" %}"></script>
+{% if messages %}
+{% for message in messages %}
+<script>
+    toastr.{{ message.tags }}('{{ message|safe }}', '', {
+        closeButton: true,
+        progressBar: true,
+        positionClass: 'toast-top-right'
+    });
+</script>
+{% endfor %}
+{% endif %}

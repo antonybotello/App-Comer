@@ -1,4 +1,4 @@
 from django.contrib import admin
-from comunidad.models import Usuario
+from .models import Slider
 # Register your models here.
-admin.site.register(Usuario)
+admin.site.register(Slider)

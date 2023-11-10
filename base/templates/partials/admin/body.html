@@ -6,6 +6,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!- para las tablas ->
+    <link href="{% static 'DataTables/datatables.min.css' %}" rel="stylesheet">
+    <link href="{% static 'DataTables/DateTime/dataTables.dateTime.min.css' %}" rel="stylesheet">
+    <link href="{% static 'DataTables/DateTime/jquery.dataTables.min.css' %}" rel="stylesheet">
+
+
+    <!- para las alertas ->
+    <link href="{% static 'Toastr/css/toastr.min.css' %}" rel="stylesheet">
+
     <title>AppComer - {{titulo}}</title>
     {% bootstrap_css %}
     {% bootstrap_javascript %}

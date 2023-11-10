@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from configuracion.models import Slider
-
+from operaciones.models import Producto
 def principal(request):
     titulo="Bienvenido"
     sliders= Slider.objects.filter(estado=True)
+    productos= Producto.objects.all()
     context={
         "titulo": titulo,
-        "sliders": sliders
+        "sliders": sliders,
+        "productos":productos
     }
     return render(request, "index.html", context)
 

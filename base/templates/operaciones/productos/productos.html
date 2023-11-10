@@ -1,0 +1,69 @@
+{% extends 'partials/admin/body.html' %}
+{% load crispy_forms_tags %}
+{% load bootstrap_icons %}
+
+{% block contenido %}
+  <div class="container-fluid m-4 row">
+    <div class="rounded card p-3 col-md-3">
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input class="btn btn-success" type="submit" value="{{accion}} {{ titulo }}" />
+        <a href="{% url "productos" %}" class="btn btn-danger">Cancelar</a>
+      </form>
+    </div>
+    <div class="rounded card p-3 mx-4 col-md-8">
+      <table class="table table-bordered w-100 display nowrap" id="tabla-productos">
+        <thead>
+          <tr>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Tienda</th>
+            <th>Accion</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for producto in productos %}
+          
+          {% if producto.estado %}
+            
+          
+            
+            <tr>
+              <td>
+                <img src="{{ producto.imagen.url }}" class="img-circle elevation-2" alt="User Image" width="60" />
+              </td>
+              <td>{{ producto.nombre }}</td>
+              <td>{{ producto.precio }}</td>
+
+              <td>{{ producto.tienda.nombre }}</td>
+             
+              <td>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{producto.id}}">{% bs_icon 'trash' %}</button>
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop{{producto.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Esta seguro de eliminar el {{ titulo }}</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">una vez eliminado no hay marcha atras</div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <a href="{% url 'producto-eliminar' producto.id %}" class="btn btn-primary">Elimínalo!</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <a href="{% url 'producto-editar' producto.id %}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">{% bs_icon 'pencil' %}</a>
+              </td>
+            </tr>
+            {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
