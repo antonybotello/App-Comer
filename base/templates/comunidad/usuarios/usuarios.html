@@ -4,22 +4,25 @@
 
 {% block contenido %}
   <div class="container-fluid m-4 row">
-    <div class="rounded card p-3 col-md-3">
-      <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <input class="btn btn-success" type="submit" value="{{ accion }} {{ titulo }}" />
-        <a href="{% url 'usuarios' %}" class="btn btn-danger">Cancelar</a>
-      </form>
-    </div>
+    {% if perms.comunidad.add_usuario %}
+      <div class="rounded card p-3 col-md-3">
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <input class="btn btn-success" type="submit" value="{{ accion }} {{ titulo }}" />
+          <a href="{% url 'usuarios' %}" class="btn btn-danger">Cancelar</a>
+        </form>
+      </div>
+    {% endif %}
     <div class="rounded card p-3 mx-4 col-md-8">
+      <a href="{% url 'create_group' %}" class="btn btn-warning w-25">Roles</a>
       <!-- Agrega los campos de filtro de fecha en tu HTML -->
       <table border="0" cellspacing="5" cellpadding="5">
         <tbody>
           <tr>
             <td>Minimum date:</td>
             <td>
-              <input type="text" id="min" name="min" class="dt-datetime"/>
+              <input type="text" id="min" name="min" class="dt-datetime" />
             </td>
           </tr>
           <tr>
@@ -42,7 +45,9 @@
             <th>Rol</th>
             <th>Tipo de Documento</th>
             <th>Documento</th>
+            {% if perms.comunidad.change_usuario %}
             <th>Accion</th>
+            {% endif %}
           </tr>
         </thead>
         <tbody>
@@ -57,10 +62,12 @@
                 <td>{{ usuario.primer_apellido }}</td>
                 <td>{{ usuario.segundo_apellido }}</td>
                 <td>{{ usuario.fecha_nacimiento }}</td>
-                <td>{{ usuario.get_rol_display }}</td>
+                <td>{{ usuario.user.groups.first }}</td>
                 <td>{{ usuario.get_tipo_documento_display }}</td>
                 <td>{{ usuario.documento }}</td>
+                {% if perms.comunidad.change_usuario %}
                 <td>
+                  
                   <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ usuario.id }}">{% bs_icon 'trash' %}</button>
                   <!-- Modal -->
                   <div class="modal fade" id="staticBackdrop{{ usuario.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -78,8 +85,12 @@
                       </div>
                     </div>
                   </div>
+                  
+
                   <a href="{% url 'usuario-editar' usuario.id %}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">{% bs_icon 'pencil' %}</a>
+                
                 </td>
+                {% endif %}
               </tr>
             {% endif %}
           {% endfor %}

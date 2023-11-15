@@ -1,17 +1,18 @@
 {% extends 'partials/admin/body.html' %}
 {% block contenido %}
-
+{% load bootstrap_icons %}
 
 
   <!-- Info boxes -->
   <div class="row">
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box">
-        <span class="info-box-icon bg-info elevation-1"><i class="bi bi-person-bounding-box"></i></span>
+        <span class="info-box-icon bg-info elevation-1">
+          {% bs_icon 'person' size='1.5em'%}</i></span>
 
         <div class="info-box-content">
           <span class="info-box-text">Usuarios</span>
-          <span class="info-box-number">{{ usuarios }}</span>
+          <span class="info-box-number">{{ usuarios_cantidad }}</span>
         </div>
         <!-- /.info-box-content -->
       </div>

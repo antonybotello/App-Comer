@@ -1,4 +1,4 @@
-from django.forms import ModelForm, widgets
+from django.forms import ModelForm
 from operaciones.models import Producto
 
 class ProductoForm(ModelForm):
@@ -13,4 +13,5 @@ class ProductoEditarForm(ModelForm):
         model= Producto
         fields= "__all__"
         exclude=["estado",]
-        
+
+

@@ -6,6 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/adminlte.min.css' %}">
+
     <!- para las tablas ->
     <link href="{% static 'DataTables/datatables.min.css' %}" rel="stylesheet">
     <link href="{% static 'DataTables/DateTime/dataTables.dateTime.min.css' %}" rel="stylesheet">
@@ -19,7 +22,6 @@
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     
-    <link rel="stylesheet" href="{% static 'css/adminlte.min.css' %}">
     <link rel="shortcut icon" href="{% static 'img/Logo.png' %}"
     type="image/x-icon">
 </head>

@@ -1,0 +1,32 @@
+{% extends 'partials/admin/body.html' %}
+{% load crispy_forms_tags %}
+{% load bootstrap_icons %}
+
+{% block contenido %}
+
+<table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for g in groups %}
+        <tr>
+          <td>{{ g.id }}</td>
+          <td>{{ g.name }}</td>
+          <td><a href="{% url 'edit_group' group_id=g.id %}">Edit</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+<!-- edit_group.html -->
+<h2>{% if group %}Edit Group: {{ group.name }}{% else %}Create Group{% endif %}</h2>
+<form method="post" action="{% if group %}{% url 'edit_group' group_id=group.id %}{% else %}{% url 'create_group' %}{% endif %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Changes</button>
+</form>
+{% endblock %}

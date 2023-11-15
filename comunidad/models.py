@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
 
 def get_image_filename(instance, filename):
     ext = filename.split('.')[-1]
@@ -15,18 +16,15 @@ class Usuario(models.Model):
     
     fecha_nacimiento= models.DateField(verbose_name="Fecha de Nacimiento")
     imagen = models.ImageField(upload_to=get_image_filename, blank=True, null=True,default="comunidad/default-user.jpeg")
-
-    class Rol(models.TextChoices):
-        ADMINISTRADOR="AD",_("Administrador")
-        CLIENTES="CL",_("Cliente")
-        TENDEROS="TE",_("Tendero")
-    rol=models.CharField(max_length=2,choices=Rol.choices,default=Rol.CLIENTES,verbose_name="Rol")
+    correo = models.EmailField(max_length=50, verbose_name="Correo")
+    
     class TipoDocumento(models.TextChoices):
         CEDULA='CC',_("Cédula")
         TARJETA='TI',_("Tarjeta de Identidad")
         CEDULA_EXTRANJERIA='CE',_("Cédula de Extrangería")
     tipo_documento=models.CharField(max_length=2,choices=TipoDocumento.choices,verbose_name="Tipo de Documento")
     documento= models.PositiveIntegerField(verbose_name="Documento", unique=True)
+    user= models.ForeignKey(User, on_delete=models.CASCADE)
     estado=models.BooleanField(default=True)
     def clean(self):
         self.primer_nombre= self.primer_nombre.title()

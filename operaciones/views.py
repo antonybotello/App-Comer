@@ -70,3 +70,5 @@ def producto_eliminar(request,pk):
     
     ## Agregar mensjae de exito
     return redirect('productos')
+
+
