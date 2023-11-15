@@ -10,12 +10,17 @@
     {% bootstrap_javascript %}
     <title>Appcomer - Iniciar Sesión</title>
 
-
     
   </head>
-  <body class="hold-transition dark-mode login-page">
+  <body class="login-page" style="min-height: 466px;">
 
     {% block contenido %}
     {% endblock contenido %}
+
+     <!-- jQuery -->
+     <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
+ 
+     <!-- AdminLTE App -->
+     <script src="{% static 'js/adminlte/adminlte.js' %}"></script>
   </body>
 </html>
