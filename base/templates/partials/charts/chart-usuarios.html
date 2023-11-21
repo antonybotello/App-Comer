@@ -1,0 +1,22 @@
+<script >
+    const ctx = document.getElementById('Chart-Usuario');
+  
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: [{%for data in usuarios_obj%}'{{data.primer_nombre}}',{%endfor%}] ,
+        datasets: [{
+          label: '# of Votos',
+          data: [{%for data in usuarios_obj%}23,{%endfor%}],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>

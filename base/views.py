@@ -18,9 +18,12 @@ def principal(request):
 def principal_admin(request):
     titulo="Bienvenido"
     usuarios= Usuario.objects.all().count()
+    usuarios_obj= Usuario.objects.all()
+
     context={
         "titulo": titulo,
-        "usuarios_cantidad":usuarios
+        "usuarios_cantidad":usuarios,
+        "usuarios_obj":usuarios_obj
     }
     return render(request, "index-admin.html", context)
 

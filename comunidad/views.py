@@ -42,7 +42,7 @@ def usuario_crear(request):
                 tipo_documento=request.POST['tipo_documento'],
                 documento=request.POST['documento'],
                 user=user,
-                rol=request.POST['rol'],
+                
             )
             messages.success(request, f'¡El Usuario se agregó de forma exitosa!')
             return redirect('usuarios')

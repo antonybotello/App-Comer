@@ -12,10 +12,14 @@
 <script src="{% static "DataTables/DateTime/moment.min.js" %}"></script>
 <script src="{% static "DataTables/datatables-config.js" %}"></script>
 
-
+<script type="text/javascript" src="{% static 'js/select2.min.js' %}"></script>
 
 <!- para las alertas ->
 <script src="{% static "Toastr/js/toastr.min.js" %}"></script>
+
+
+
+
 {% if messages %}
 {% for message in messages %}
 <script>

@@ -3,6 +3,15 @@ from django.forms import ModelChoiceField, ModelForm, widgets
 from comunidad.models import Usuario, Tienda
 from django.contrib.auth.models import Group, Permission
 from django.contrib.admin.widgets import FilteredSelectMultiple 
+from django_select2 import forms as s2forms
+
+
+class UsuarioWidget(s2forms.ModelSelect2Widget):
+    search_fields = [
+        "primer_nombre__icontains",
+        "correo__icontains",
+    ]
+
 class UsuarioForm(ModelForm):
     rol= ModelChoiceField(
         queryset=Group.objects.all(),
@@ -42,12 +51,15 @@ class TiendaForm(ModelForm):
         model= Tienda
         fields= "__all__"
         exclude=["estado",]
-        
+        widgets = {
+        "usuario": UsuarioWidget,
+        }
 
 class TiendaEditarForm(ModelForm):
     class Meta:
         model= Tienda
         fields= "__all__"
         exclude=["estado",]
+       
 
         

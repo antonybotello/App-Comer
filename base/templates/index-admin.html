@@ -1,7 +1,7 @@
 {% extends 'partials/admin/body.html' %}
 {% block contenido %}
 {% load bootstrap_icons %}
-
+{% load static %}
 
   <!-- Info boxes -->
   <div class="row">
@@ -61,5 +61,13 @@
     <!-- /.col -->
   </div>
   <!-- /.row -->
-  
+ <div class="card w-50 mx-auto">
+  <canvas id="Chart-Usuario"></canvas>
+</div>
+</div>
+
+<script src="{% static 'ChartJS/chart.js' %}"></script>
+
+{% include "partials/charts/chart-usuarios.html" %}
+
 {% endblock %}
