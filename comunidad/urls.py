@@ -10,7 +10,7 @@ urlpatterns = [
     path("tiendas/eliminar/<int:pk>/", tienda_eliminar, name="tienda-eliminar"),
     path("tiendas/editar/<int:pk>/", tienda_editar, name="tienda-editar"),
 
-    path('edit_group/', edit_group, name='create_group'),
-    path('edit_group/<int:group_id>/', edit_group, name='edit_group'),
+    path('usuarios/roles/', edit_group, name='create_group'),
+    path('usuarios/roles/<int:group_id>/', edit_group, name='edit_group'),
 
 ]

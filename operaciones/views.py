@@ -68,7 +68,30 @@ def producto_eliminar(request,pk):
     producto=Producto.objects.filter(id=pk)
     producto.update(estado=False)
     
-    ## Agregar mensjae de exito
+    messages.success(request, f'¡El Producto "{producto.nombre}" se eliminó correctamente!')
     return redirect('productos')
 
 
+def pedido_crear(request):
+    titulo = "Pedido"
+    accion = "Agregar"
+    pedidos = Pedido.objects.all()
+
+    if request.method == "POST":
+        form = PedidoForm(request.POST)
+        if form.is_valid():
+            pedido = form.save()
+            messages.success(request, f'¡El Pedido se agregó de forma exitosa!')
+            return redirect("pedidos")
+        else:
+            messages.error(request, 'Error al agregar el Pedido. Por favor, verifica los campos.')
+    else:
+        form = PedidoForm()
+
+    context = {
+        "titulo": titulo,
+        "pedidos": pedidos,
+        "form": form,
+        "accion": accion
+    }
+    return render(request, "ruta_de_tu_template/pedido_template.html", context)

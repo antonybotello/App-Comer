@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from configuracion.models import Slider
+
 from operaciones.models import Producto
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from comunidad.models import Usuario
+from configuracion.models import Slider
 def principal(request):
     titulo="Bienvenido"
     sliders= Slider.objects.filter(estado=True)
@@ -30,3 +31,5 @@ def principal_admin(request):
 def logout_user(request):
     logout(request)
     return redirect('index')
+
+

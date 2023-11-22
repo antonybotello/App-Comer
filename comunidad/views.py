@@ -46,11 +46,11 @@ def usuario_crear(request):
             )
             messages.success(request, f'¡El Usuario se agregó de forma exitosa!')
             return redirect('usuarios')
-            # if usuario.imagen:
-            #     img = Image.open(usuario.imagen.path)
-            #     img= img.resize((500,500))
-            #     img.save(usuario.imagen.path)
-            # usuario.save()
+            if usuario.imagen:
+                 img = Image.open(usuario.imagen.path)
+                 img= img.resize((500,500))
+                 img.save(usuario.imagen.path)
+            usuario.save()
         else:
             messages.success(request, f'¡Error al agregar al Usuario!')
             form = UsuarioForm(request.POST,request.FILES)

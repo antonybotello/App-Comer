@@ -9,8 +9,11 @@ from django_select2 import forms as s2forms
 class UsuarioWidget(s2forms.ModelSelect2Widget):
     search_fields = [
         "primer_nombre__icontains",
+        "primer_apellido__icontains"
         "correo__icontains",
+        "documento__icontains",
     ]
+  
 
 class UsuarioForm(ModelForm):
     rol= ModelChoiceField(

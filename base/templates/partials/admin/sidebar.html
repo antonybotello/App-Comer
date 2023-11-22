@@ -1,11 +1,12 @@
 {% load static %}
+{% load bootstrap_icons %}
 
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{% url 'index' %}" class="brand-link">
-      <img src="{% static 'img/Logo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AppComer</span>
+    <a href="{% url 'index' %}" class="brand-link decoration-none ">
+      <img src="{% static 'img/Logo.png' %}" alt="AppComer Logo" class=" img-circle elevation-3 " width="50" style="opacity: .8">
+      <img src="{% static 'img/Titulo.png' %}" width="150" alt="AdminLTE Titulo" >
     </a>
 
     <!-- Sidebar -->
@@ -23,10 +24,10 @@
       <!-- SidebarSearch Form -->
       <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Buscar..." aria-label="Buscar">
           <div class="input-group-append">
             <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
+              {% bs_icon 'search' %}
             </button>
           </div>
         </div>
@@ -39,6 +40,7 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-close">
             <a href="#" class="nav-link ">
+              {% bs_icon 'people' %}
               <i class="bi bi-people-fill"></i>
               <p>
                 Comunidad
@@ -47,29 +49,23 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{% url 'usuarios' %}" class="nav-link" data-url="">
-                  <i class="bi bi-person nav-icon"></i>
+                  {% bs_icon 'person' %}
                   <p>Usuarios</p>
                 </a>
-                <li class="nav-item">
-                  <a href="{% url 'tiendas' %}" class="nav-link" data-url="">
-                    <i class="bi bi-person-lines-fill nav-icon"></i>
-                    <p>Tiendas</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="" class="nav-link" data-url="">
-                    <i class="bi bi-lightbulb-fill"></i>
-                    <p>Proyectos</p>
-                  </a>
-                </li>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'tiendas' %}" class="nav-link" data-url="">
+                  {% bs_icon 'shop' %}
+                  <p>Tiendas</p>
+                </a>
+              </li>
             </ul>
           </li>
           
       
           <li class="nav-item menu-close">
             <a href="#" class="nav-link ">
-              <i class="bi bi-megaphone-fill"></i>
-              
+              {% bs_icon 'megaphone-fill' %}
               <p>
                 Operaciones
               </p>
@@ -77,14 +73,38 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{% url "productos" %}" class="nav-link" data-url="">
-                  <i class="bi bi-emoji-angry-fill"></i>
+                  {% bs_icon 'box-seam-fill' %}
                   <p>Productos</p>
                 </a>
-                
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link" data-url="">
+                  {% bs_icon 'basket-fill' %}
+                  <p>Pedidos</p>
+                </a>
+              </li>
             </ul>
           </li>
           
-        </ul>
+        
+        <li class="nav-item menu-close">
+          <a href="#" class="nav-link ">
+            {% bs_icon 'gear-wide-connected' %}
+            <p>
+              Configuraciones
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url "sliders" %}" class="nav-link" data-url="">
+                {% bs_icon 'card-image' %}
+                <p>Sliders</p>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
+      </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>

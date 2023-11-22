@@ -15,7 +15,7 @@ class Usuario(models.Model):
     segundo_apellido= models.CharField(max_length=45,verbose_name="Segundo Apellido")
     
     fecha_nacimiento= models.DateField(verbose_name="Fecha de Nacimiento")
-    imagen = models.ImageField(upload_to=get_image_filename, blank=True, null=True,default="comunidad/default-user.jpeg")
+    imagen = models.ImageField(upload_to=get_image_filename, blank=True, null=True,default="comunidad\default-user.jpeg")
     correo = models.EmailField(max_length=50, verbose_name="Correo")
     
     class TipoDocumento(models.TextChoices):

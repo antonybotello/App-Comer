@@ -1,0 +1,38 @@
+{% extends 'partials/admin/body.html' %}
+
+{% block contenido %}
+<div class="container-fluid m-4 row">
+  {% include 'partials/CRUD/crear.html' %}
+  <div class="rounded card p-3 mx-4 col-md-8">
+    <table class="table table-bordered w-100 display nowrap">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>URL</th>
+          <th>Imagen</th>
+          <th>Prioridad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for slider in sliders %}
+          <tr>
+            <td>{{ slider.nombre }}</td>
+            <td>{{ slider.descripcion }}</td>
+            <td>{{ slider.url }}</td>
+            <td>
+              <img src="{{ slider.imagen.url }}" alt="{{ slider.nombre }}" style="max-width: 100px; max-height: 100px;" />
+            </td>
+            <td>{{ slider.prioridad }}</td>
+            <td>
+              <a href="{% url 'editar_slider' slider.id %}" class="btn btn-sm btn-primary">Editar</a>
+              <a href="{% url 'eliminar_slider' slider.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

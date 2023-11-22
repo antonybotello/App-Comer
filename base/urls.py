@@ -26,9 +26,12 @@ urlpatterns = [
     path('logout/',logout_user,name="logout"),
     path('admin/', admin.site.urls),
     path('',principal,name="index"),
+
+
     path('adm/',principal_admin,name="index-admin"),
     path('comunidad/',include('comunidad.urls')),
     path('operaciones/',include('operaciones.urls')),
+    path('configuraciones/',include('configuracion.urls')),
     path('reiniciar/',auth_views.PasswordResetView.as_view(),name='pass_reset'),
     path('reiniciar/enviar',auth_views.PasswordResetDoneView.as_view(),name='pass_reset_done'),
     path('reiniciar/<uid64>/<token>',auth_views.PasswordResetConfirmView.as_view(),name='pass_reset_confirm'),

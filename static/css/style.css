@@ -7,3 +7,13 @@ input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 30px #2c2c2c inset !important;
     -webkit-text-fill-color: #fff !important;
 }
+
+.select2-container--default .select2-selection--single {
+    background-color: #343a40 !important;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+.beige{
+    background-color: #ebebd3 !important;
+}
