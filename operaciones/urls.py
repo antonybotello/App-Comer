@@ -1,7 +1,9 @@
 from django.urls import path
 from operaciones.views import *
 urlpatterns = [
-    path('agregar_al_carrito/<int:producto_id>/', agregar_al_carrito, name='agregar_al_carrito'),
+    path('agregar-al-carrito/<int:producto_id>/', agregar_al_carrito, name='agregar_al_carrito'),
+    path('eliminar-producto-carrito/<int:producto_id>/', eliminar_producto_carrito, name='eliminar_producto_carrito'),
+
     path('purgar-carrito/', purgar_carrito, name='purgar_carrito'),
     
     path('catalogo/<str:categoria>/<str:subcategoria>/<str:palabra>/', catalogo_productos, name='catalogo_productos'),

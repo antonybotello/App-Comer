@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from operaciones.models import Producto,Pedido
 from operaciones.forms import ProductoForm,ProductoEditarForm
 from django.contrib import messages
+from django.http import JsonResponse
 from PIL import Image
 def agregar_al_carrito(request, producto_id):
     carrito = request.session.get('carrito', {})
@@ -22,6 +23,20 @@ def agregar_al_carrito(request, producto_id):
     print(carrito)
     return redirect(request.META.get('HTTP_REFERER', f'/operaciones/productos/{producto_id}/'))
 
+def eliminar_producto_carrito(request, producto_id):
+    try:
+        # Lógica para eliminar el producto del carrito
+        carrito = request.session.get('carrito', {})
+        if str(producto_id) in carrito:
+            del carrito[str(producto_id)]
+            request.session['carrito'] = carrito
+            messages.warning(request, f'¡Se ha eliminado el producto del carrito!')
+            return JsonResponse({'success': True})
+        
+        else:
+            return JsonResponse({'success': False, 'message': 'Producto no encontrado en el carrito.'}, status=400)
+    except Exception as e:
+        return JsonResponse({'success': False, 'message': str(e)}, status=500)
 
 def purgar_carrito(request):
     if 'carrito' in request.session:

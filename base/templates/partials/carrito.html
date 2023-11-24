@@ -23,7 +23,7 @@
                       <div class="col-md-3">
                         <div class="cantidad-control">
                           <button class="btn btn-outline-secondary" onclick="restarCantidad({{ item.producto.id }})">-</button>
-                          <span class="cantidad mx-2">{{ item.cantidad }}</span>
+                          <span id="cantidad-{{ item.producto.id }}" class="cantidad-{{ item.producto.id }} mx-2">{{ item.cantidad }}</span>
                           <button class="btn btn-outline-secondary" onclick="sumarCantidad({{ item.producto.id }})">+</button>
                         </div>
                       </div>
@@ -40,7 +40,7 @@
           </div>
         </div>
         {% if carrito and total_items > 0 %}
-          <p class="mt-3 text-center">Total del pedido: ${{ total_pedido }}</p>
+          <p class="mt-3 text-center h3">Total del pedido: <span class="text-success h2">${{ total_pedido }}</span></p>
         {% endif %}
       </div>
       
@@ -53,3 +53,51 @@
     </div>
   </div>
 </div>
+
+<script>
+  function sumarCantidad(productoId) {
+    // Realiza una llamada AJAX u otra lógica para aumentar la cantidad en el carrito
+    // Actualiza la interfaz de usuario
+    let cantidadElement = document.getElementById(`cantidad-${productoId}`);
+    let cantidad = parseInt(cantidadElement.innerText);
+    cantidad += 1;
+    // Actualiza la interfaz
+    cantidadElement.innerText = cantidad;
+}
+
+function restarCantidad(productoId) {
+    // Realiza una llamada AJAX u otra lógica para disminuir la cantidad en el carrito
+    // Actualiza la interfaz de usuario
+    let cantidadElement = document.getElementById(`cantidad-${productoId}`);
+    let cantidad = parseInt(cantidadElement.innerText);
+    if (cantidad > 0) {
+        cantidad -= 1;
+        // Actualiza la interfaz
+        cantidadElement.innerText = cantidad;
+    }
+    // Si la cantidad llega a 0, llama a la función eliminarProducto
+    if (cantidad === 0) {
+      eliminarProducto(productoId);
+    }
+}
+function eliminarProducto(productoId) {
+  // Realiza una llamada AJAX o utiliza el backend de Django para eliminar el producto
+  fetch(`operaciones/eliminar-producto-carrito/${productoId}/`, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': '{{ csrf_token }}'  // Asegúrate de incluir el token CSRF
+      },
+      body: JSON.stringify({}),
+  })
+  .then(response => {
+      if (response.ok) {
+          // Actualiza la interfaz de usuario si es necesario
+          location.reload();  // Recarga la página para reflejar los cambios
+      } else {
+          console.error('No se pudo eliminar el producto del carrito.');
+      }
+  })
+  .catch(error => console.error('Error:', error));
+}
+</script>
