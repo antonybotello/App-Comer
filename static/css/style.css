@@ -14,6 +14,36 @@ input:-webkit-autofill {
     border-radius: 4px;
 }
 
-.beige{
+.bg-beige{
     background-color: #ebebd3 !important;
 }
+.bg-naranja{
+    background-color: #e5893c !important;
+}
+.bg-gris{
+    background-color: #423e37 !important;
+}
+.bg-rojo{
+    background-color: #c52233 !important;
+}
+.bg-azul{
+    background-color: #2d7dd2 !important;
+}
+.bg-beige{
+    background-color: #ebebd3 !important;
+}
+.tc-naranja{
+    color: #e5893c !important;
+}
+.tc-gris{
+    color: #423e37 !important;
+}
+.tc-rojo{
+    color: #c52233 !important;
+}
+.tc-azul{
+    color: #2d7dd2 !important;
+}
+
+
+

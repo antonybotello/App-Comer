@@ -1,8 +1,50 @@
-from django.shortcuts import render,redirect
-from operaciones.models import Producto
-from operaciones.forms import ProductoForm,ProductoEditarForm 
+from django.shortcuts import render,redirect,get_object_or_404
+from operaciones.models import Producto,Pedido
+from operaciones.forms import ProductoForm,ProductoEditarForm
 from django.contrib import messages
 from PIL import Image
+def agregar_al_carrito(request, producto_id):
+    carrito = request.session.get('carrito', {})
+    producto = Producto.objects.get(id=producto_id)
+
+    # Convierte producto_id a cadena para asegurarte de consistencia
+    str_producto_id = str(producto_id)
+
+    if str_producto_id in carrito:
+        # El producto ya está en el carrito, incrementa la cantidad
+        carrito[str_producto_id] += 1
+    else:
+        # El producto no está en el carrito, agrégalo con cantidad 1
+        carrito[str_producto_id] = 1
+
+    request.session['carrito'] = carrito
+    messages.success(request, f'¡Se agregó {producto.nombre} al carrito!')
+    print(carrito)
+    return redirect(request.META.get('HTTP_REFERER', f'/operaciones/productos/{producto_id}/'))
+
+
+def purgar_carrito(request):
+    if 'carrito' in request.session:
+        del request.session['carrito']
+    messages.warning(request, f'¡Se ha vaciado el carrito!')
+
+    return redirect(request.META.get('HTTP_REFERER', "index"))
+
+def producto_detalle(request, producto_id):
+    producto = get_object_or_404(Producto, id=producto_id)
+    titulo = producto.nombre
+    productos = Producto.objects.filter(tienda=producto.tienda,estado=True).exclude(id=producto_id)
+
+    context = {
+        "titulo": titulo,
+        "producto_obj": producto,
+        "productos": productos,
+    }
+
+    return render(request, "partials/usuarios/operaciones/productos/producto-hoja.html", context)
+
+def catalogo_productos(request,categoria=None,subcategoria=None, palabra=None):
+    pass
 # Create your views here.
 def producto_crear(request):
     titulo="Producto"
@@ -68,7 +110,7 @@ def producto_eliminar(request,pk):
     producto=Producto.objects.filter(id=pk)
     producto.update(estado=False)
     
-    messages.success(request, f'¡El Producto "{producto.nombre}" se eliminó correctamente!')
+    messages.success(request, f'¡El Producto "{producto[0].nombre}" se eliminó correctamente!')
     return redirect('productos')
 
 

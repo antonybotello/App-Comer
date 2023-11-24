@@ -26,9 +26,14 @@
 
 
     <title>AppComer - {{titulo}}</title>
+
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     
+    <!- para Select2 ->
+    <link href="{% static 'Select2/select2.css' %}" rel="stylesheet">
+
+
     <link rel="shortcut icon" href="{% static 'img/Logo.png' %}"
     type="image/x-icon">
 </head>
@@ -68,17 +73,10 @@ layout-navbar-fixed layout-footer-fixed">
 
     {% include 'partials/admin/footer.html' %}
     {% include 'partials/admin/scripts.html' %}
-    {{ form.media.js }}
-    <script src="{% static 'js/es.js' %}"></script>
 
-    <script>
-        
-        $(document).ready(function() {
-            $('.django-select2').select2({
-                language: "es"
-              });
-        });
-    </script>
+
+ 
+
 </div>
         
 </body>

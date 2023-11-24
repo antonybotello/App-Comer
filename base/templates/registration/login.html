@@ -2,49 +2,45 @@
 {% load static %}
 {% load bootstrap_icons %}
 {% block contenido %}
-  <div class="card card-outline card-primary w-25">
-    <div class="card-header text-center">
-      <img src="{% static 'img/Logo.png' %}" alt="Logo" class="brand-image img-circle" width="200" style="opacity: .8" />
-      <a href="{% url 'index-admin' %}" class="h1"><img src="{% static 'img/Titulo.png' %}" width="200">
-      </a>
-    </div>
-    <div class="card-body">
-      <p class="login-box-msg">Bienvenido a AppComer</p>
+<div class="d-flex flex-column justify-content-center align-items-center w-25 mx-auto vh-100">
+  <div class="card-header text-center">
+    <a href="{% url 'index' %}" class="h1">
+      <img src="{% static 'img/Logo2.png' %}" width="200" style="opacity: .8">
+    </a>
+  </div>
+  <div class="card card-outline card-primary">
+    <div class="card-body p-4">
+      <p class="login-box-msg h5">Bienvenido a AppComer</p>
       <form method="post">
         {% csrf_token %}
         <div class="input-group mb-3">
           {{ form.username }}
           <div class="input-group-append">
             <div class="input-group-text">
-                {% bs_icon 'envelope' %}
+              {% bs_icon 'envelope' %}
             </div>
           </div>
-          <div data-lastpass-icon-root="true" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div>
         </div>
         <div class="input-group mb-3">
           {{ form.password }}
           <div class="input-group-append">
             <div class="input-group-text">
-                {% bs_icon 'lock-fill' %}
+              {% bs_icon 'lock-fill' %}
             </div>
           </div>
-          <div data-lastpass-icon-root="true" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div>
         </div>
-        <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="remember" />
-              <label for="remember">Recordarme</label>
-            </div>
+        <div class="d-flex justify-content-between p-2">
+          <div class="icheck-primary">
+            <input type="checkbox" id="remember" />
+            <label for="remember">Recordarme</label>
           </div>
-
           <input type="submit" class="btn btn-primary btn-block" value="Ingresar" />
         </div>
       </form>
-
       <p class="mb-1">
         <a href="{% url 'pass_reset' %}">Olvidé mi contraseña</a>
       </p>
     </div>
   </div>
+</div>
 {% endblock %}

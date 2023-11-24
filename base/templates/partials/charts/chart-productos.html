@@ -1,0 +1,22 @@
+<script >
+    const ctx = document.getElementById('Chart-Productos');
+  
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: [{%for tienda in tiendas_con_productos %}'{{tienda.nombre}}',{%endfor%}] ,
+        datasets: [{
+          label: '# productos',
+          data: [{%for tienda in tiendas_con_productos %}{{tienda.cantidad_productos}},{%endfor%}],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>

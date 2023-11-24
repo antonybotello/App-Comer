@@ -16,6 +16,8 @@
       <table class="table table-bordered w-100 display nowrap" id="tabla-productos">
         <thead>
           <tr>
+            <th>ID</th>
+
             <th>Imagen</th>
             <th>Nombre</th>
             <th>Precio</th>
@@ -31,6 +33,8 @@
           
             
             <tr>
+              <td>{{ producto.id }}</td>
+
               <td>
                 <img src="{{ producto.imagen.url }}" class="img-circle elevation-2" alt="User Image" width="60" />
               </td>

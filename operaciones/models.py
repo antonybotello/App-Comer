@@ -14,6 +14,7 @@ class Producto(models.Model):
     nombre= models.CharField(max_length=45,verbose_name="Nombre")
     precio= models.PositiveIntegerField(verbose_name="Precio")
     tienda= models.ForeignKey(Tienda, verbose_name="Tienda", on_delete=models.CASCADE)
+    descripcion=models.TextField(verbose_name="Descripción")
     estado=models.BooleanField(default=True)
 
 class Pedido(models.Model):

@@ -1,0 +1,16 @@
+<!-- Swiper -->
+<div class="container">
+   {% comment %} <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>  {% endcomment %}
+  <div class="swiper-container mySwiper">
+    <div class="swiper-wrapper">
+      {% for producto in productos %}
+        <div class="swiper-slide d-flex bg-light justify-content-center rounded-2">
+          {% include 'partials/usuarios/operaciones/productos/card.html' %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- Swiper JS -->

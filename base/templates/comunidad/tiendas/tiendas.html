@@ -19,7 +19,7 @@
             <th>Nombre</th>
             <th>NIT</th>
             <th>Responsable</th>
-            <th>Accion</th>
+            <th>Acción</th>
           </tr>
         </thead>
         <tbody>
@@ -35,7 +35,10 @@
               <td>{{ tienda.nit }}</td>
               <td>{{ tienda.usuario.primer_nombre }}</td>             
               <td>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{tienda.id}}">{% bs_icon 'trash' %}</button>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ tienda.id }}" data-bs-tooltip="tooltip" title="Eliminar">
+                  {% bs_icon 'trash' size='1.5em' %}
+              </button>
+              
                 <!-- Modal -->
                 <div class="modal fade" id="staticBackdrop{{tienda.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                   <div class="modal-dialog">
@@ -52,7 +55,7 @@
                     </div>
                   </div>
                 </div>
-                <a href="{% url 'tienda-editar' tienda.id %}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">{% bs_icon 'pencil' %}</a>
+                <a href="{% url 'tienda-editar' tienda.id %}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">{% bs_icon 'pencil' size='1.5em'%}</a>
               </td>
             </tr>
             {% endif %}

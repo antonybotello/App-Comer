@@ -17,8 +17,11 @@
       <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="buscar">
         <input type="search" class="form-control" placeholder="Buscar..." aria-label="Buscar">
       </form>
-
+      <a href="#" class="d-block link-body-emphasis text-decoration-none " data-bs-toggle="modal" data-bs-target="#carritoModal">
+        <div class="rounded-circle bg-azul text-light p-2 m-2">    {% bs_icon 'cart' size="1.5em"%}</div>
+      </a>
       <div class="dropdown text-end">
+        
         <a href="#" class="d-block link-body-emphasis text-decoration-none " data-bs-toggle="dropdown" aria-expanded="false">
           <img src=" {% static 'img/default-user.jpeg' %}" alt="mdo" width="32" height="32" class="rounded-circle">    {% bs_icon 'caret-down-fill' %}
         </a>
@@ -32,3 +35,4 @@
     </div>
   </div>
 </header>
+{% include "partials/carrito.html" %}

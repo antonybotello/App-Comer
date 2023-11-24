@@ -10,7 +10,7 @@
           {% bs_icon 'list' %}</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{% url 'index' %}" class="light-mode nav-link text-decoration-none link-dark">Inicio</a>
+        <a href="{% url 'index-admin' %}" class="light-mode nav-link text-decoration-none link-dark">Inicio</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contacto</a>
@@ -37,13 +37,13 @@
         <div class="navbar-search-block">
           <form class="form-inline">
             <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+              <input class="form-control form-control-navbar" type="buscar" placeholder="Buscar" aria-label="Buscar">
               <div class="input-group-append">
                 <button class="btn btn-navbar" type="submit">
-                  <i class="bi bi-search"></i>
+                  {% bs_icon 'search' %}
                 </button>
                 <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
+                  {% comment %} {% bs_icon 'time' %} {% endcomment %}
                 </button>
               </div>
             </div>
@@ -54,7 +54,7 @@
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="bi bi-chat-heart"></i>
+          {% bs_icon 'heart' %}
           
           <span class="badge badge-danger navbar-badge">3</span>
         </a>
@@ -66,10 +66,10 @@
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                  <span class="float-right text-sm text-danger">{% bs_icon 'star' %}</span>
                 </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                <p class="text-sm">Pedido pendiente...</p>
+                <p class="text-sm text-muted">{% bs_icon 'clock' %}</i> Hace 4 horas</p>
               </div>
             </div>
             <!-- Message End -->

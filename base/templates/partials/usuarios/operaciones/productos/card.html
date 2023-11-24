@@ -1,0 +1,15 @@
+{% load bootstrap_icons %}
+{% load humanize %}
+<div class="w-75 mx-auto py-2">
+  <img src="{{ producto.imagen.url }}" class="bd-placeholder-img rounded-5 img-circle elevation-2 w-75" alt="Imagen de producto" />
+  <h2 class="fw-normal">{{ producto.nombre }}</h2>
+  <div class="tc-gris h5">$ {{ producto.precio|intcomma }}</div>
+  <a>{{ producto.tienda.nombre }}</a>
+  <p>
+    <!-- Botón Agregar al Carrito -->
+    <a class="btn btn-success" href="{% url 'agregar_al_carrito' producto.id %}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Agregar al Carrito">{% bs_icon 'cart-plus' size='1.5em'%}</a>
+    <!-- Botón Ver Detalles -->
+    <a class="btn bg-azul text-light" href="{% url "producto-detalle" producto.id %}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ver Detalles">{% bs_icon 'info-circle' size='1.5em' %}</a>
+  </p>
+  <p></p>
+</div>

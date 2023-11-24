@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'clasificacion',
     'comunidad',
     'operaciones',
@@ -45,7 +46,6 @@ INSTALLED_APPS = [
     'crispy_forms', # pip install django-crispy-forms
     'django_bootstrap_icons',#pip install django-bootstrap-icons
     'crispy_bootstrap5', # pip install crispy-bootstrap5
-    'django_select2', #pip install django-select2
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS= "bootstrap5"
 CRISPY_TEMPLATE_PACK= "bootstrap5"
@@ -72,7 +72,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'base.context_processors.sesion'
+                'base.context_processors.sesion',
+                'base.context_processors.carrito',
+
             ],
         },
     },
@@ -90,25 +92,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/3",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    },
-    'select2': {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/4",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    }
-}
-SELECT2_JS = ['/static/js/select2.min.js']
-SELECT2_CSS = ['/static/css/select2.css']
-SELECT2_CACHE_BACKEND = "select2"
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -152,7 +136,8 @@ STATIC_ROOT="/static"
 MEDIA_URL= "/media/"
 MEDIA_ROOT= os.path.join(BASE_DIR,"media/")
 
-
+# para que funcione el recordar contraseña
+SESSION_COOKIE_SAMESITE = 'Lax'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

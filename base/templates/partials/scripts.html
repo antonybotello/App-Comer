@@ -1,0 +1,54 @@
+{% load static %}
+<script src="{% static 'js/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'Swiper/swiper-bundle.min.js' %}"></script>
+<!- para las alertas ->
+<script src="{% static "Toastr/js/toastr.min.js" %}"></script>
+
+<script>
+  var swiper = new Swiper('.swiper-container', {
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    },
+    slidesPerView: 1,
+    spaceBetween: 10,
+    // init: false,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true
+    },
+  
+    breakpoints: {
+      620: {
+        slidesPerView: 1,
+        spaceBetween: 20
+      },
+      680: {
+        slidesPerView: 2,
+        spaceBetween: 40
+      },
+      920: {
+        slidesPerView: 3,
+        spaceBetween: 40
+      },
+      1240: {
+        slidesPerView: 4,
+        spaceBetween: 50
+      }
+    }
+  })
+  swiper.update()
+</script>
+{% if messages %}
+  {% for message in messages %}
+    <script>
+    // In your Javascript (external .js resource or <script> tag)
+    
+    toastr.{{ message.tags }}('{{ message|safe }}', '', {
+        closeButton: true,
+        progressBar: true,
+        positionClass: 'toast-bottom-right'
+    });
+</script>
+  {% endfor %}
+{% endif %}

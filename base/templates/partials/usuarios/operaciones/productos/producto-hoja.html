@@ -1,0 +1,27 @@
+{% extends 'partials/body.html' %}
+{% load humanize %}
+{% block contenido %}
+  <!-- Lista de Productos -->
+  <div class="px-5 mb-4 bg-body-tertiary bg-naranja">
+    <div class="container-fluid py-5">
+      <div class="row bg-beige p-5 rounded-5">
+        <!-- Contenido a la Izquierda -->
+        <div class="col-md-8">
+          <h1 class="display-5 fw-bold">{{ producto_obj.nombre }} | <span class="text-success">${{ producto_obj.precio|intcomma }}</span></h1>
+          <a href="#" class="tc-gris h5 text-decoration-none">{{ producto_obj.tienda.nombre }}</a>
+          <p class="fs-4">{{ producto_obj.descripcion }}</p>
+          <a class="btn text-white btn-lg bg-rojo"  href="{% url 'agregar_al_carrito' producto_obj.id %}">Agregar al Carrito</a>
+        </div>
+        <!-- Imagen a la Derecha -->
+        <div class="col-md-4 text-center">
+          <img src="{{ producto_obj.imagen.url }}" class="img-fluid rounded-circle" alt="{{ producto_obj.nombre }}" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-5 mb-4 bg-body-tertiary">
+    <div class="h3 pb-4">Otros productos de {{ producto_obj.tienda.nombre }}</div>
+    {% include 'partials/usuarios/operaciones/productos/swiper.html' %}
+  </div>
+  
+{% endblock %}

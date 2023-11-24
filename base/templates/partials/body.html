@@ -9,10 +9,13 @@
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    
+    <link rel="stylesheet" href="{% static 'Swiper/swiper-bundle.min.css' %}"/>
     <link rel="shortcut icon" href="{% static 'img/Logo.png' %}">
+    
+    <!- para las alertas ->
+    <link href="{% static 'Toastr/css/toastr.min.css' %}" rel="stylesheet">
 </head>
-<body class="beige">
+<body class="bg-beige ">
     {% include 'partials/header.html' %}
     
     {% block contenido %}

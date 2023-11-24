@@ -1,0 +1,55 @@
+{% load humanize %}
+<div class="modal fade" tabindex="-1" id="carritoModal" aria-labelledby="carritoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Carrito</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              {% if carrito and total_items > 0 %}
+                <ul class="list-group">
+                  {% for item in productos_con_cantidad %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center mb-3">
+                      <div class="col-md-3">
+                        <span class="nombre">{{ item.producto.nombre }}</span>
+                      </div>
+                      <div class="col-md-3">
+                        <span class="precio fs-4">${{ item.producto.precio }}</span>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="cantidad-control">
+                          <button class="btn btn-outline-secondary" onclick="restarCantidad({{ item.producto.id }})">-</button>
+                          <span class="cantidad mx-2">{{ item.cantidad }}</span>
+                          <button class="btn btn-outline-secondary" onclick="sumarCantidad({{ item.producto.id }})">+</button>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <button class="btn btn-danger" onclick="eliminarProducto({{ item.producto.id }})">Eliminar</button>
+                      </div>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% else %}
+                <p class="h2">Tu carrito está vacío.</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% if carrito and total_items > 0 %}
+          <p class="mt-3 text-center">Total del pedido: ${{ total_pedido }}</p>
+        {% endif %}
+      </div>
+      
+      <div class="modal-footer">
+        <a type="button" class="btn btn-danger" href="{% url 'purgar_carrito' %}">Vaciar carrito</a>
+
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Realizar Pedido</button>
+      </div>
+    </div>
+  </div>
+</div>
